@@ -2,10 +2,20 @@ require 'sinatra'
 require_relative 'models/account.rb'
 require_relative 'models/state'
 
+enable :sessions
+
+protected_routes = Set.new ['/cards', '/api']
+unprotected_routes = Set.new ['/login', '/submitlogin']
+
 before do
-	pass unless State.get_user().nil?
-	pass if request.path_info == '/login' or request.path_info == '/submitlogin'
-	redirect '/login'
+        puts 'before ' + session[:username].to_s
+        if (session[:username].nil?)
+            pass if unprotected_routes.include? request.path_info
+            redirect '/login'
+        else
+            pass if protected_routes.include? request.path_info
+            redirect '/cards'
+        end
 end
 
 get '/login' do
@@ -18,11 +28,10 @@ post '/submitlogin' do
 
 	if (!acc.valid?)
 		sleep 5
-		redirect '/'
+		redirect '/login'
 	end
 
-	State.set_user params[:username]
-
+        session[:username] = params[:username].to_s
 	redirect '/cards'
 end
 
