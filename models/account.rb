@@ -6,6 +6,15 @@ class Account
         @username = un
         @password = pw
         @stacks = Stack_Container.new("users/" + @username)
+        @time = Time.new
+    end
+    
+    def username
+       @username 
+    end
+    
+    def stacks
+       @stacks 
     end
 
     def valid?

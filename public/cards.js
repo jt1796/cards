@@ -1,8 +1,27 @@
+var allCards;
+
 window.onload=function(){
-  genRows('cardtable');
-  altRows('cardtable');
+  allCards = getCards();
+  ready = allCards["ready"];
+  verified = allCards["verified"];
+    
+  genRows('cardtable1', allCards["ready"]);
+  altRows('cardtable1');
+  
+  genRows('cardtable2', allCards["progress"]);
+  altRows('cardtable2');
+  
+  genRows('cardtable3', allCards["verified"]);
+  altRows('cardtable3');
 }
 
+function getCards(){
+    var xmlHTTP = new XMLHttpRequest();
+    xmlHTTP.open("GET", "api?username=john&password=jjj", true);
+    xmlHTTP.send(null);
+    alert(xmlHTTP.responseText);
+    return JSON.parse(xmlHTTP.responseText);
+}
 
 
 function altRows(id){
@@ -21,13 +40,17 @@ function altRows(id){
   }
 }
 
-function genRows(id){
+function genRows(id, cards){
     var table = document.getElementById(id)
-    var row = table.insertRow(1)
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell2 = row.insertCell(2);
-    table.insertRow(2).insertCell(0);
-
-    cell1.innerHTML = "HI";
+    
+    var row = 1, i;
+    for (i in cards) {
+      newRow = table.insertRow(row++);
+      var cell1 = newRow.insertCell(0);
+      var cell2 = newRow.insertCell(1);
+      var cell3 = newRow.insertCell(2);
+      cell1.innerHTML = i
+      cell2.innerHTML = cards[i]["body"]
+      cell3.innerHTML = cards[i]["acceptance"]
+    }
 }
