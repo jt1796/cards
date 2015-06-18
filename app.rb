@@ -24,7 +24,6 @@ end
 
 post '/submitlogin' do
     acc = Account.new(params[:username].to_s, params[:password].to_s )
-        State.add_user acc
         
     if (!acc.valid?)
         sleep 5

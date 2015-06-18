@@ -19,7 +19,6 @@ function getCards(){
     var xmlHTTP = new XMLHttpRequest();
     xmlHTTP.open("GET", "api?username=john&password=jjj", true);
     xmlHTTP.send(null);
-    alert(xmlHTTP.responseText);
     return JSON.parse(xmlHTTP.responseText);
 }
 
