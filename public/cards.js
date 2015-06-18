@@ -17,7 +17,7 @@ window.onload=function(){
 
 function getCards(){
     var xmlHTTP = new XMLHttpRequest();
-    xmlHTTP.open("GET", "api?username=john&password=jjj", true);
+    xmlHTTP.open("GET", "api?username=john&password=jjj", false);
     xmlHTTP.send(null);
     return JSON.parse(xmlHTTP.responseText);
 }
@@ -48,8 +48,8 @@ function genRows(id, cards){
       var cell1 = newRow.insertCell(0);
       var cell2 = newRow.insertCell(1);
       var cell3 = newRow.insertCell(2);
-      cell1.innerHTML = i
-      cell2.innerHTML = cards[i]["body"]
-      cell3.innerHTML = cards[i]["acceptance"]
+      cell1.innerHTML = "<b>" + i + "</b>";
+      cell2.innerHTML = cards[i]["body"];
+      cell3.innerHTML = cards[i]["acceptance"];
     }
 }
