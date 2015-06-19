@@ -48,7 +48,7 @@ class Stack_Container
         data = getJSON
         return if !(isStack src and isStack src)
         return if data[src].nil? or data[src][title].nil?
-        
+
         item = data[src][title]
         add(dst, title, item['body'], item['acceptance'])
         remove(src, title)
