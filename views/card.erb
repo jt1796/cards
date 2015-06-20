@@ -12,5 +12,7 @@
   <br>
   <textarea name="verification" rows="4" cols="50"><%= @verification %></textarea>
   <br>
-  <button name="update" type="submit" formaction="https://google.com">update</button>
+  <button type="submit" formaction="action/demote/<%= @stack %>/<%= @title %>">demote</button>
+  <button type="submit" formaction="action/edit/<%= @stack %>/<%= @title %>">update</button>
+  <button type="submit" formaction="action/promote/<%= @stack %>/<%= @title %>">promote</button>
 </form>

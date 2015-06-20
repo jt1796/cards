@@ -1,7 +1,5 @@
 require 'sinatra'
 require 'json'
-require 'haml'
-require 'sinatra/reloader'
 require_relative 'models/account.rb'
 require_relative 'models/state'
 require_relative 'models/table_generator'
@@ -17,7 +15,7 @@ before do
             redirect '/login'
         else
             #pass if protected_routes.include? request.path_info
-            #redirect '/cards'
+            #redirect '/cards'6a
         end
 end
 
@@ -51,4 +49,8 @@ get '/card' do
     @body = sc[@stack][@title]['body']
     @verification = sc[@stack][@title]['acceptance']
     erb :card
+end
+
+get '/action/*/*/*' do |action, stack, title|
+    action + ' ' + stack + ' ' + title
 end
