@@ -57,7 +57,7 @@ class Stack_Container
     def isStack( stack )
         if !((stack == 'progress') or
              (stack == 'ready') or
-             (stack == 'acceptance'))
+             (stack == 'verified'))
             return false
         end
         return true

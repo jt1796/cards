@@ -8,7 +8,7 @@ class Table_Generator
             index = 1
         elsif stack == 'progress'
             index = 2
-        elsif stack == 'acceptance'
+        elsif stack == 'verified'
             index = 3
         end
 
