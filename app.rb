@@ -49,11 +49,11 @@ get '/card' do
     if @stack == 'ready'
        @disDemote = 'disabled' 
     end
-    if @stack == 'verification'
+    if @stack == 'verified'
        @disPromote = 'disabled' 
     end
     @body = sc[@stack][@title]['body']
-    @verification = sc[@stack][@title]['acceptance']
+    @acceptance = sc[@stack][@title]['acceptance']
     erb :card
 end
 
