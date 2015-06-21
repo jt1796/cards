@@ -57,6 +57,19 @@ get '/card' do
     erb :card
 end
 
+get '/newcard' do
+   erb :newcard 
+end
+
+get '/add' do
+    title = params[:title]
+    body = params[:body]
+    acceptance = params[:acceptance]
+    sc = Stack_Container.new("users/" + session[:username])
+    sc.add('ready', title, body, acceptance)
+    redirect '/cards'   
+end
+
 get '/action/*/*/*' do |action, stack, title|
     sc = Stack_Container.new("users/" + session[:username])
     if (action == 'edit')
