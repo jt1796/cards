@@ -5,6 +5,7 @@ require_relative 'models/state'
 require_relative 'models/table_generator'
 
 enable :sessions
+set :session_secret, Time.now.to_s + '123412341234' + Time.now.to_s
 
 protected_routes = Set.new ['/cards', '/card']
 unprotected_routes = Set.new ['/login', '/submitlogin']
