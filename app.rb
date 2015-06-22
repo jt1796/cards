@@ -7,16 +7,16 @@ require_relative 'models/table_generator'
 enable :sessions
 set :session_secret, Time.now.to_s + '123412341234' + Time.now.to_s
 
-protected_routes = Set.new ['/cards', '/card']
-unprotected_routes = Set.new ['/login', '/submitlogin']
+protected_routes = Set.new ['/cards', '/card', '/newcard', '/add']
+unprotected_routes = Set.new ['/login', '/submitlogin', '/newaccount']
 
 before do
         if (session[:username].nil?)
             pass if unprotected_routes.include? request.path_info
             redirect '/login'
         else
-            #pass if protected_routes.include? request.path_info
-            #redirect '/cards'6a
+            pass if protected_routes.include? request.path_info
+            redirect '/cards'
         end
 end
 
@@ -24,11 +24,24 @@ get '/login' do
     erb :login
 end
 
+get '/newaccount' do
+   erb :newaccount 
+end
+
+post '/newaccount' do
+    acc = Account.new(params[:username], params[:password])
+    acc.create()
+    redirect '/login'
+end
+
 post '/submitlogin' do
     acc = Account.new(params[:username].to_s, params[:password].to_s )
 
     if (!acc.valid?)
         sleep 5
+        if (!acc.exists?)
+           redirect '/newaccount'
+        end
         redirect '/login'
     end
 

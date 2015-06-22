@@ -5,8 +5,15 @@ class Account
     def initialize( un, pw )
         @username = un
         @password = pw
-        @stacks = Stack_Container.new("users/" + @username)
-        @time = Time.new
+        @exists = Pathname.new("users/" + @username).exist?
+        @stacks = Stack_Container.new("users/" + @username) if @exists
+        @valid = @stacks.getJSON()[@username] == @password if @exists
+    end
+    
+    def create
+       return if @exists
+       user_data = {@username => @password}
+       IO.write(Pathname.new("users/" + @username), JSON.generate(user_data))
     end
     
     def username
@@ -18,7 +25,11 @@ class Account
     end
 
     def valid?
-        return @stacks.getJSON()[@username] == @password
+        @valid
+    end
+    
+    def exists?
+       @exists
     end
 
     def add ( stack, title, body, acceptance )
