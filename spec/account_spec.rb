@@ -1,6 +1,15 @@
 require_relative '../models/account'
 require_relative '../models/stack_container'
+require_relative '../route_tracker'
 require 'rspec'
+
+RSpec.describe Routes do
+    describe 'protected or unprotected' do
+        it 'contains the wildcard routes' do
+            expect(Routes.protected?('/action/put/hi/there/')).to be true
+        end
+    end
+end
 
 RSpec.describe Account do
   describe '#initialize' do
