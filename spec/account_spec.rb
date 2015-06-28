@@ -8,6 +8,15 @@ RSpec.describe Routes do
         it 'contains the wildcard routes' do
             expect(Routes.protected?('/action/put/hi/there/')).to be true
         end
+        it 'does not allow empty pieces' do
+            expect(Routes.protected?('/action/put///')).to be false
+        end
+        it 'does not allow longer pieces' do
+            expect(Routes.protected?('/action/put/hi/there/jdd')).to be true
+        end
+        it 'unprotected route' do
+            expect(Routes.unprotected?('/login/')).to be true
+        end
     end
 end
 
