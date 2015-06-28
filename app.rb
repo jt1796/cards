@@ -9,11 +9,13 @@ enable :sessions
 set :session_secret, Time.now.to_s + '123412341234' + Time.now.to_s
 
 before do
+        puts request.path_info
         if (session[:username].nil?)
-            pass if unprotected_routes.include? request.path_info
+            pass if Routes.unprotected? request.path_info
+            puts 'redirected to login'
             redirect '/login'
         else
-            pass if protected_routes.include? request.path_info
+            pass if Routes.protected? request.path_info
             redirect '/cards'
         end
 end
