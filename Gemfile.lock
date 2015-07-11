@@ -7,6 +7,7 @@ GEM
       tilt
     json (1.8.3)
     multi_json (1.11.1)
+    pg (0.18.2)
     rack (1.6.1)
     rack-protection (1.5.3)
       rack
@@ -44,6 +45,7 @@ PLATFORMS
 DEPENDENCIES
   haml
   json
+  pg
   rspec
   sinatra
   sinatra-contrib
