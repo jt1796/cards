@@ -1,9 +1,11 @@
 require 'sinatra'
 require 'json'
+require 'pg'
 require_relative 'models/account.rb'
 require_relative 'models/state'
 require_relative 'models/table_generator'
 require_relative 'route_tracker'
+require_relative 'models/database'
 
 enable :sessions
 set :session_secret, Time.now.to_s + '123412341234' + Time.now.to_s
@@ -101,4 +103,9 @@ get '/action/*/*/*' do |action, stack, title|
         sc.transfer(stack, dst, title)
     end
     redirect '/cards'
+end
+
+get '/viewusers' do
+    Database.addCard('john', 'verified', 'database p2', 'add cards to database', 'cards can be created and viewed')
+    'hello'
 end

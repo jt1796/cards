@@ -2,7 +2,6 @@ require 'pathname'
 require 'json'
 
 class Stack_Container
-    #Assume the userfile exists and has at least the user/pw in its
 
     def initialize( pn )
         @path = pn
