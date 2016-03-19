@@ -3,12 +3,12 @@ require 'pg'
 class Database
 
   @@conn = PG.connect(
-      env['DATABASE_URL'],
+      ENV['DATABASE_URL'],
       "5432",
       "", "",
-      env['DATABASE_NAME'],
-      env['DATABASE_USER'],
-      env['DATABASE_PASSWORD'])
+      ENV['DATABASE_NAME'],
+      ENV['DATABASE_USER'],
+      ENV['DATABASE_PASSWORD'])
 
   def self.getUser ( username )
     user = @@conn.exec("SELECT * FROM USERNAMES WHERE username = '" + username + "'")
