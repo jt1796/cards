@@ -3,7 +3,7 @@ require 'pg'
 class Database
 
   @@conn = PG.connect(
-      ENV['DATABASE_URL'],
+      ENV['DATABASE_HOST'],
       "5432",
       "", "",
       ENV['DATABASE_NAME'],
