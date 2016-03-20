@@ -1,13 +1,15 @@
 post '/login' do
-  if Login.can_login(params)
-    session[:username] = params[:username].to_s
-  else
-    #error
+  begin
+    if Login.can_login(params)
+      session[:username] = params[:username].to_s
+    else
+      body 'incorrect password'
+      status 401
+    end
+  rescue StandardError
+    body 'account not found'
+    status 403
   end
-end
-
-get '/newaccount' do
-  erb :newaccount
 end
 
 post '/newaccount' do
