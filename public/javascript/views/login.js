@@ -10,6 +10,16 @@ var Login = Backbone.View.extend({
   },
 
   submitLogin: function(e) {
-    alert('clicked');
+    $.ajax({
+      url: '/login',
+      method: 'POST',
+      data: {
+        username: $('#loginUsername').val(),
+        password: $('#loginPassword').val()
+      },
+      success: function(response) {
+        remove();
+      }
+    });
   }
 })

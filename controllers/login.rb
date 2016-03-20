@@ -1,5 +1,9 @@
-get '/login' do
-  erb :login
+post '/login' do
+  if Login.can_login(params)
+    session[:username] = params[:username].to_s
+  else
+    #error
+  end
 end
 
 get '/newaccount' do
@@ -12,11 +16,4 @@ post '/newaccount' do
   account.password = params[:password]
   account.save
   redirect '/login'
-end
-
-post '/submitlogin' do
-  account = Account.find(params[:username])
-  redirect '/login' if account.password != params[:password]
-  session[:username] = params[:username].to_s
-  redirect '/cards'
 end
