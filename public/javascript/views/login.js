@@ -2,7 +2,8 @@ var Login = Backbone.View.extend({
   initialize: function() {
   },
   events: {
-    'click #loginButton': 'submitLogin'
+    'click #loginButton': 'submitLogin',
+    'click #createAccountButton': 'createAccount'
   },
   render: function() {
     $(this.el).html(loginTemplate());
@@ -10,6 +11,7 @@ var Login = Backbone.View.extend({
   },
 
   submitLogin: function(e) {
+    e.preventDefault();
     $.ajax({
       url: '/login',
       method: 'POST',
@@ -18,6 +20,21 @@ var Login = Backbone.View.extend({
         password: $('#loginPassword').val()
       },
       success: function(response) {
+        remove();
+      }
+    });
+  },
+
+  createAccount: function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: '/newaccount',
+      method: 'POST',
+      data: {
+        username: $('#loginUsername').val(),
+        password: $('#loginPassword').val()
+      },
+      success: function() {
         remove();
       }
     });
