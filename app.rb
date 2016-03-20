@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
-require 'pg'
 require_relative 'models/account.rb'
+require_relative 'models/card.rb'
 require_relative 'models/state'
 require_relative 'models/table_generator'
 require_relative 'route_tracker'
@@ -11,23 +11,21 @@ enable :sessions
 set :session_secret, Time.now.to_s + '123412341234' + Time.now.to_s
 
 before do
-        puts request.path_info
-        if (session[:username].nil?)
-            pass if Routes.unprotected? request.path_info
-            puts 'redirected to login'
-            redirect '/login'
-        else
-            pass if Routes.protected? request.path_info
-            redirect '/cards'
-        end
+  if (session[:username].nil?)
+    pass if Routes.unprotected? request.path_info
+    redirect '/login'
+  else
+    pass if Routes.protected? request.path_info
+    redirect '/cards'
+  end
 end
 
 get '/login' do
-    erb :login
+  erb :login
 end
 
 get '/newaccount' do
-   erb :newaccount 
+  erb :newaccount
 end
 
 post '/newaccount' do
@@ -63,10 +61,10 @@ get '/card' do
     @stack = params[:stack]
     @title = params[:title]
     if @stack == 'ready'
-       @disDemote = 'disabled' 
+       @disDemote = 'disabled'
     end
     if @stack == 'verified'
-       @disPromote = 'disabled' 
+       @disPromote = 'disabled'
     end
     @body = sc[@stack][@title]['body']
     @acceptance = sc[@stack][@title]['acceptance']
@@ -74,7 +72,7 @@ get '/card' do
 end
 
 get '/newcard' do
-   erb :newcard 
+   erb :newcard
 end
 
 get '/add' do
@@ -83,7 +81,7 @@ get '/add' do
     acceptance = params[:acceptance]
     sc = Stack_Container.new("users/" + session[:username])
     sc.add('ready', title, body, acceptance)
-    redirect '/cards'   
+    redirect '/cards'
 end
 
 get '/action/*/*/*' do |action, stack, title|
@@ -95,7 +93,7 @@ get '/action/*/*/*' do |action, stack, title|
     if (action == 'promote')
         dst = 'progress' if stack == 'ready'
         dst = 'verified' if stack == 'progress'
-        sc.transfer(stack, dst, title) 
+        sc.transfer(stack, dst, title)
     end
     if (action == 'demote')
         dst = 'ready' if stack == 'progress'

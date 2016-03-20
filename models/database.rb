@@ -1,15 +1,15 @@
 require 'pg'
+require 'active_record'
+
+ActiveRecord::Base.establish_connection(
+  adapter:  'postgresql',
+  host:     ENV['DATABASE_HOST'],
+  database: ENV['DATABASE_NAME'],
+  username: ENV['DATABASE_USER'],
+  password: ENV['DATABASE_PASSWORD']
+)
 
 class Database
-
-  @@conn = PG.connect(
-      ENV['DATABASE_HOST'],
-      "5432",
-      "", "",
-      ENV['DATABASE_NAME'],
-      ENV['DATABASE_USER'],
-      ENV['DATABASE_PASSWORD'])
-
   def self.getUser ( username )
     user = @@conn.exec("SELECT * FROM USERNAMES WHERE username = '" + username + "'")
     return nil if user.ntuples == 0
