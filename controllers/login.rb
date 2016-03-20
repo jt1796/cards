@@ -7,22 +7,18 @@ get '/newaccount' do
 end
 
 post '/newaccount' do
-  acc = Account.new(params[:username], params[:password])
-  acc.create()
+  account = Account.new
+  account.username = params[:username]
+  account.password = params[:password]
+  account.save
   redirect '/login'
 end
 
 post '/submitlogin' do
-  acc = Account.new(params[:username].to_s, params[:password].to_s )
-
-  if (!acc.valid?)
-    sleep 5
-    if (!acc.exists?)
-       redirect '/newaccount'
-    end
-    redirect '/login'
-  end
-
+  account = Account.find(params[:username])
+  puts account.password.to_s + 'x'
+  puts params[:password].to_s + 'x'
+  redirect '/login' if account.password != params[:password]
   session[:username] = params[:username].to_s
   redirect '/cards'
 end

@@ -1,6 +1,6 @@
 require_relative 'database.rb'
 
-class Account < ActiveRecord::Base
+class Transaction < ActiveRecord::Base
   validates :password, presence: true
 
   self.table_name = 'Transactions'
