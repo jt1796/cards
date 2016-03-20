@@ -7,8 +7,8 @@ class Account < ActiveRecord::Base
   validates :stack, presence: true
   validates :body, presence: true
   validates :acceptance, presence: true
-  title
+  validates :title, presence: true
 
-  self.table_name = 'Cards'
+  self.table_name = 'Accounts'
   #self.primary_key = 'id'
 end
