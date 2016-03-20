@@ -6,7 +6,7 @@ post '/login' do
       body 'incorrect password'
       status 401
     end
-  rescue StandardError
+  rescue StandardError => e
     body 'account not found'
     status 403
   end
