@@ -2,7 +2,7 @@ post '/login' do
   begin
     if Login.can_login(params)
       session[:username] = params[:username].to_s
-      return Account.find(session[:username])
+      Account.find(params[:username].to_s).attributes.to_json
     else
       body 'incorrect password'
       status 401
@@ -15,8 +15,9 @@ end
 
 post '/newaccount' do
   begin
-    return Login.create_account(params)
+    Login.create_account(params).attributes.to_json
   rescue StandardError => e
+    puts e
     body 'account creation failed'
     status 400
   end

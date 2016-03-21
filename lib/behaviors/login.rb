@@ -9,6 +9,7 @@ class Login
     account = Account.new
     account.username = params[:username]
     account.password = params[:password]
-    account.save
+    account.save!
+    return account
   end
 end
