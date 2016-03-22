@@ -3,6 +3,7 @@ var Root = Backbone.View.extend({
   initialize: function() {
     this.listenTo(eventNeo, 'loggedIn', this.handleLogin);
     this.views.login = new Login();
+    this.views.cards = new Cards();
   },
   events: {
   },
@@ -14,6 +15,7 @@ var Root = Backbone.View.extend({
 
   handleLogin: function() {
     this.views.login.remove();
-    this.$el.html('logged in');
+    this.$el.append(this.views.cards.$el);
+    this.views.cards.render();
   }
 })

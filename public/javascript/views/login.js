@@ -20,7 +20,6 @@ var Login = Backbone.View.extend({
         password: $('#loginPassword').val()
       },
       success: function(response) {
-        //emit a login event
         eventNeo.trigger("loggedIn", $('#loginUsername').val());
       }
     });
