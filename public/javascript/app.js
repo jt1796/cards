@@ -1,4 +1,7 @@
+var eventNeo = {};
+
 $(document).ready(function() {
-  var login = new Login( {el: $('#login')} );
-  login.render();
+  _.extend(eventNeo, Backbone.Events);
+  var root = new Root({el: $('#root')});
+  root.render();
 });
