@@ -16,20 +16,32 @@ var cardsTemplate = Handlebars.compile(`
     </div>
   </div>
 
+
   <div class="row">
     <div class="well col-md-2">
-      Form here
+      <form>
+        <div class="form-group">
+          <label for="cardTitle">Title</label>
+          <input class="form-control" id="cardTitle">
+        </div>
+        <button class="btn btn-default" id="cardButton">Create</button>
+      </form>
     </div>
     <div class="well col-md-3">
-      Transaction
+      {{#each model}}
+        {{#if this.attributes.stack == 'ready'}}
+          <div>
+          {{this.attributes.title}}
+          </div><br/>
+        {{/if}}
+      {{/each}}
     </div>
     <div class="well col-md-4">
-      Complete cards
     </div>
     <div class="well col-md-3">
-      Get started
     </div>
   </div>
+
 
 </div>
 `);
