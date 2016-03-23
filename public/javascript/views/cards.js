@@ -21,12 +21,10 @@ var Cards = Backbone.View.extend({
       var card = data[i].attributes;
       if(card.stack == 'ready') {
         deck.ready.push(card);
-      }
-      if(card.stack == 'progress') {
+      } else if (card.stack == 'progress') {
         deck.progress.push(card);
-      }
-      if(true) {
-
+      } else {
+        deck.done.push(card);
       }
     }
     return deck;

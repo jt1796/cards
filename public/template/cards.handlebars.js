@@ -46,7 +46,7 @@ var cardsTemplate = Handlebars.compile(`
     </div>
     <div class="well col-md-3">
       {{#each done}}
-        {{this}}
+        {{this.title}}
       {{/each}}
     </div>
   </div>
