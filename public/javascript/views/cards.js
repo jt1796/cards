@@ -32,6 +32,12 @@ var Cards = Backbone.View.extend({
   createCard: function(e) {
     e.preventDefault();
     alert('creating a card');
-    //in this.model, add in a card to ready and sync
+    this.model.create({
+      username: 'x',
+      stack: 'ready',
+      title: 'x',
+      body: 'x',
+      acceptance: 'x'
+    });
   }
 })

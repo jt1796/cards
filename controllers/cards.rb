@@ -8,5 +8,6 @@ get '/card/:id' do
 end
 
 post '/card' do
-
+  body_as_hash = JSON.parse request.body.read
+  Cards.createCard(body_as_hash, session).to_json
 end

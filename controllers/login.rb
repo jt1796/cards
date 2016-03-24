@@ -8,6 +8,7 @@ post '/login' do
       status 401
     end
   rescue StandardError => e
+    puts e
     body 'account not found'
     status 403
   end
