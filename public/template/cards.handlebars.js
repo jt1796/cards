@@ -2,13 +2,13 @@ var cardsTemplate = Handlebars.compile(`
 <div class="container">
 
   <div class="row">
-    <div class="well col-md-2">
+    <div class="well col-md-3">
       Create New
     </div>
     <div class="well col-md-3">
       Ready
     </div>
-    <div class="well col-md-4">
+    <div class="well col-md-3">
       In Progress
     </div>
     <div class="well col-md-3">
@@ -17,7 +17,7 @@ var cardsTemplate = Handlebars.compile(`
   </div>
 
   <div class="row">
-    <div class="well col-md-2">
+    <div class="well col-md-3">
       <form>
         <div class="form-group">
           <label for="cardTitle">Title</label>
@@ -41,7 +41,7 @@ var cardsTemplate = Handlebars.compile(`
         </div>
       {{/each}}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       {{#each progress}}
         <div class="well">
           {{this.title}}
