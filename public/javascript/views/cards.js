@@ -35,9 +35,9 @@ var Cards = Backbone.View.extend({
     this.model.create({
       username: 'x',
       stack: 'ready',
-      title: 'x',
-      body: 'x',
-      acceptance: 'x'
+      title: $('#cardTitle').val(),
+      body: $('#cardBody').val(),
+      acceptance: $('#cardAcceptance').val()
     });
   }
 })

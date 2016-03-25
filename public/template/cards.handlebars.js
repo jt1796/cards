@@ -34,14 +34,18 @@ var cardsTemplate = Handlebars.compile(`
         <button class="btn btn-default" id="cardCreateButton">Create</button>
       </form>
     </div>
-    <div class="well col-md-3">
+    <div class="col-md-3">
       {{#each ready}}
-        {{this.title}}
+        <div class="well">
+          {{this.title}}
+        </div>
       {{/each}}
     </div>
-    <div class="well col-md-4">
+    <div class="col-md-4">
       {{#each progress}}
-        {{this.title}}
+        <div class="well">
+          {{this.title}}
+        </div>
       {{/each}}
     </div>
     <div class="well col-md-3">
