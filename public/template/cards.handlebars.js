@@ -36,25 +36,26 @@ var cardsTemplate = Handlebars.compile(`
     </div>
     <div class="col-md-3">
       {{#each ready}}
-        <div class="well">
+        <div class="well" id="card-{{this.id}}">
           {{this.title}}
         </div>
       {{/each}}
     </div>
     <div class="col-md-3">
       {{#each progress}}
-        <div class="well">
+        <div class="well" id="card-{{this.id}}">
           {{this.title}}
         </div>
       {{/each}}
     </div>
-    <div class="well col-md-3">
+    <div class="col-md-3">
       {{#each done}}
-        {{this.title}}
+        <div class="well" id="card-{{this.id}}">
+          {{this.title}}
+        </div>
       {{/each}}
     </div>
   </div>
-
 
 </div>
 `);
