@@ -12,7 +12,8 @@ var CardsRouter = Backbone.Router.extend({
   routes: {
     "login":        "login",
     "cards":        "cards",
-    "card/:id":     "card"
+    "card/:id":     "card",
+    "":             "cards"
   },
   login: function() {
     console.log("routing to login");
