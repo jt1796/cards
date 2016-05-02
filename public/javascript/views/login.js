@@ -20,6 +20,8 @@ var Login = Backbone.View.extend({
         password: $('#loginPassword').val()
       },
       success: function(response) {
+        loggedIn = true;
+        console.log("set logged in. Fixing to route");
         router.navigate('#cards', {trigger: true});
       }
     });

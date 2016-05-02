@@ -1,15 +1,14 @@
 var CardsRouter = Backbone.Router.extend({
-  // execute: function(callback, args, name) {
-  //   $.ajax({
-  //     url: '/username',
-  //   }).done(function(data) {
-  //     console.log("checking if logged in");
-  //     if(data === '') {
-  //       console.log("you are not logged in");
-  //       router.navigate('login', {trigger: true});
-  //     }
-  //   });
-  // },
+  execute: function(callback, args, name) {
+    console.log("loggedIn : " + loggedIn);
+    if(loggedIn){
+      if (callback) callback.apply(this, args);
+    } else {
+      router.navigate('login', {replace: true});
+      this.login();
+      return false;
+    }
+  },
   routes: {
     "login":        "login",
     "cards":        "cards",
