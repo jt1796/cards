@@ -21,7 +21,6 @@ var Login = Backbone.View.extend({
       },
       success: function(response) {
         loggedIn = true;
-        console.log("set logged in. Fixing to route");
         router.navigate('#cards', {trigger: true});
       }
     });
