@@ -2,9 +2,8 @@ var eventNeo = {};
 var router;
 
 $(document).ready(function() {
-  router = new CardsRouter();
-  router.navigate('#testing');
   _.extend(eventNeo, Backbone.Events);
-  var root = new Root({el: $('#root')});
-  root.render();
+  router = new CardsRouter();
+  console.log("initial URL match router : " + Backbone.history.start());
+  console.log(Backbone.history);
 });

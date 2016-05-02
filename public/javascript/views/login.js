@@ -1,5 +1,6 @@
 var Login = Backbone.View.extend({
-  initialize: function() {
+  initialize: function(el) {
+    this.$el = el;
   },
   events: {
     'click #loginButton': 'submitLogin',
@@ -9,7 +10,6 @@ var Login = Backbone.View.extend({
     $(this.el).html(loginTemplate());
     return this;
   },
-
   submitLogin: function(e) {
     e.preventDefault();
     $.ajax({
@@ -20,11 +20,10 @@ var Login = Backbone.View.extend({
         password: $('#loginPassword').val()
       },
       success: function(response) {
-        eventNeo.trigger("loggedIn", $('#loginUsername').val());
+        router.navigate('#cards', {trigger: true});
       }
     });
   },
-
   createAccount: function(e) {
     e.preventDefault();
     $.ajax({

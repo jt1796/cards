@@ -23,3 +23,7 @@ post '/newaccount' do
     status 400
   end
 end
+
+get '/username' do
+  session[:username].to_s
+end

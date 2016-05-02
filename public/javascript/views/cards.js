@@ -1,7 +1,8 @@
 var Cards = Backbone.View.extend({
-  initialize: function(m) {
-    this.model = m;
+  initialize: function() {
+    this.model = new Deck();
     this.listenTo(this.model, 'sync', this.render);
+    this.model.fetch();
     eventNeo.on('showCard', this.showCard);
   },
   events: {
